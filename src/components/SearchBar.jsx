@@ -1,18 +1,18 @@
 import { useState } from "react";
 
 function SearchBar({ handleSubmit }) {
+  // state 'term' is initialized with default string 'cars'
   const [term, setTerm] = useState("cars");
 
-  //sets input value to term(state)
+  //sets form input value to term(state)
   const handleChange = (event) => {
     setTerm(event.target.value);
   };
 
-  //passes the input(from state) to the parent handleSubmit function
   const handleFormSubmit = (event) => {
-    event.preventDefault();
-    handleSubmit(term);
-    setTerm("");
+    event.preventDefault(); //prevents default form submission behavior
+    handleSubmit(term); //passes the current term to parent component
+    setTerm(""); //clears the input by setting term to empty string
   };
 
   return (
@@ -21,7 +21,7 @@ function SearchBar({ handleSubmit }) {
         <input
           value={term}
           onChange={handleChange}
-          // clears the placeholder text when the field is in foucs
+          // clears the placeholder text(default state) when the field is focused
           onFocus={() => setTerm("")}
         />
         {/* conditional rendering */}
